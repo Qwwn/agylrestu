@@ -6,6 +6,19 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/resume.pdf",
+        headers: [
+          {
+            key: "Content-Disposition",
+            value: 'attachment; filename="Agyl-Restu-Hermanto-Resume.pdf"',
+          },
+          {
+            key: "Content-Type",
+            value: "application/pdf",
+          },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           {
