@@ -5,6 +5,12 @@ export type ProjectLink = {
   href: string;
 };
 
+export type ProjectWorkstream = {
+  title: string;
+  summary: string;
+  responsibilities: string[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -21,6 +27,7 @@ export type Project = {
   outcome: string;
   highlights: string[];
   links: ProjectLink[];
+  workstreams?: ProjectWorkstream[];
 };
 
 export type Certification = {
@@ -127,67 +134,71 @@ export const projects: Project[] = [
     confidential: true,
     eyebrow: "Multi-product utility platform",
     summary:
-      "An end-to-end digital ecosystem used across six Indonesian water utilities, spanning customer mobile apps, internal administration, monitoring, public websites, and backend services.",
+      "An end-to-end digital ecosystem for multiple Indonesian water-utility deployments, spanning Android apps, internal administration, monitoring, public websites, and backend services.",
     role:
-      "Software engineer with full ownership of the Android applications and hands-on contributions across web, backend, database integration, notifications, and customer communication.",
+      "Software engineer with full ownership of the Android applications and hands-on contributions across web, backend, database integration, and notifications.",
     stack: ["Kotlin", "Jetpack Compose", "React.js", "Next.js", "PHP", "MySQL", "REST APIs"],
     challenge:
-      "Deliver consistent customer and staff experiences across multiple organizations while working with different generations of systems and operational constraints.",
+      "Deliver consistent mobile and web experiences across multiple deployments while working with different generations of systems and practical constraints.",
     solution:
       "Built reusable mobile patterns, integrated REST services, maintained admin and monitoring interfaces, and adapted shared capabilities to each deployment without exposing sensitive configuration.",
     outcome:
-      "A maintainable family of web and Android products supporting customer service, internal administration, system monitoring, and field operations.",
+      "A family of web and Android products supporting customer service, internal administration, system monitoring, and field operations.",
     highlights: [
-      "Customer Android applications built with Kotlin and Jetpack Compose",
+      "Public-facing Android applications built with Kotlin and Jetpack Compose",
       "Admin portals, monitoring dashboards, and public websites",
-      "REST API and MySQL integration across customer and billing workflows",
+      "REST API and MySQL integration across application workflows",
       "Firebase push notifications and WhatsApp API communication",
     ],
     links: [],
-  },
-  {
-    slug: "w-survei-field-operations",
-    title: "W-Survei Field Operations",
-    period: "2026",
-    category: "Professional",
-    featured: true,
-    confidential: true,
-    eyebrow: "Android field workflow",
-    summary:
-      "A secure Android application for field teams to receive assignments, complete structured reports, capture photo and GPS evidence, and submit work reliably from unstable networks.",
-    role:
-      "Owned the Android implementation end to end and integrated it with authenticated backend workflows and branch-scoped notifications.",
-    stack: ["Kotlin", "Jetpack Compose", "CameraX", "GPS", "WorkManager", "Firebase", "SQLite"],
-    challenge:
-      "Field submissions combine structured data, camera evidence, location data, and intermittent connectivity, so partial or duplicate uploads could not be allowed.",
-    solution:
-      "Designed encrypted drafts, idempotent submissions, background retry, evidence validation, topic-based notifications, and clear recovery paths for interrupted work.",
-    outcome:
-      "A mobile-first workflow that helps field staff complete and track operational reports with dependable evidence handling.",
-    highlights: [
-      "Camera and GPS evidence capture",
-      "Encrypted local drafts and offline-safe retry",
-      "Branch-scoped Firebase notifications",
-      "Accessible Compose UI with light and dark themes",
+    workstreams: [
+      {
+        title: "Public-facing Android applications",
+        summary: "I fully developed the Android applications used for public-facing services across the utility deployments.",
+        responsibilities: [
+          "Implemented screens and user flows with Kotlin and Jetpack Compose",
+          "Integrated authenticated REST API endpoints and service workflows",
+          "Handled local data, loading states, errors, and app-level navigation",
+        ],
+      },
+      {
+        title: "Field reporting — W-Survei",
+        summary: "I owned the Android implementation for a field-reporting workflow inside the ecosystem.",
+        responsibilities: [
+          "Built assignment and structured-report flows for field staff",
+          "Implemented camera and GPS evidence capture",
+          "Added encrypted local drafts, synchronization, and retry handling for unstable connections",
+          "Integrated branch-scoped Firebase notifications for assignment updates",
+        ],
+      },
+      {
+        title: "Admin, monitoring, and public web",
+        summary: "I contributed to the web interfaces used by internal teams and the public.",
+        responsibilities: [
+          "Built and refined admin portals, monitoring dashboards, and public websites",
+          "Worked with React.js, Next.js, Vite, and Tailwind CSS",
+          "Connected interface states to existing service and reporting workflows",
+        ],
+      },
+      {
+        title: "Backend and data integration",
+        summary: "I contributed to the API and database layer supporting the product family.",
+        responsibilities: [
+          "Developed and integrated PHP/Slim REST API endpoints with MySQL",
+          "Implemented database-backed integration between mobile, web, and administrative products",
+          "Supported data exchange between interface and service layers",
+        ],
+      },
+      {
+        title: "Customer communication",
+        summary: "I implemented communication capabilities used across customer-facing services.",
+        responsibilities: [
+          "Implemented push-notification delivery with Firebase Cloud Messaging",
+          "Integrated the WhatsApp API for service information",
+          "Adapted shared product capabilities for different deployment contexts without exposing configuration",
+        ],
+      },
     ],
-    links: [],
-  },
-  {
-    slug: "google-cloud-devops-terraform",
-    title: "Google Cloud DevOps with Terraform",
-    period: "2024",
-    category: "Personal",
-    featured: true,
-    eyebrow: "Infrastructure as code",
-    summary:
-      "A Google Cloud DevOps project that provisions infrastructure with Terraform and automates delivery through GitHub Actions.",
-    role: "Designed the infrastructure workflow and CI/CD automation as a cloud engineering project.",
-    stack: ["Google Cloud", "Terraform", "GitHub Actions", "CI/CD"],
-    challenge: "Make cloud infrastructure reproducible and reduce manual deployment steps.",
-    solution: "Defined infrastructure as code and connected validation and deployment steps to a GitHub Actions pipeline.",
-    outcome: "A repeatable cloud delivery workflow demonstrating infrastructure automation fundamentals.",
-    highlights: ["Infrastructure as code", "Automated CI/CD", "Google Cloud deployment"],
-    links: [{ label: "GitHub", href: "https://github.com/Qwwn/gcp-terraform" }],
   },
   {
     slug: "bloommate",
@@ -250,7 +261,7 @@ export const projects: Project[] = [
     slug: "seblak-sulthane-mobile",
     title: "Seblak Sulthane Mobile App",
     period: "2025",
-    category: "Personal",
+    category: "Professional",
     featured: false,
     eyebrow: "Flutter mobile application",
     summary: "A Flutter mobile application project for a local food brand.",
@@ -266,7 +277,7 @@ export const projects: Project[] = [
     slug: "fermata-course",
     title: "Fermata Course Platform",
     period: "2024",
-    category: "Personal",
+    category: "Academic",
     featured: false,
     eyebrow: "Course platform prototype",
     summary: "A course platform prototype exploring content delivery and web application structure.",
@@ -325,57 +336,6 @@ export const projects: Project[] = [
     outcome: "A working object-oriented programming project covering CRUD and transactional records.",
     highlights: ["Inventory management", "Sales and purchasing", "MySQL integration"],
     links: [{ label: "GitHub", href: "https://github.com/Qwwn/PharmacyManagementSystem" }],
-  },
-  {
-    slug: "bookshelf-api",
-    title: "Bookshelf API",
-    period: "2023",
-    category: "Academic",
-    featured: false,
-    eyebrow: "Backend fundamentals",
-    summary: "A REST API for managing a bookshelf, created as part of Dicoding backend training.",
-    role: "Implemented the API and its book-management endpoints in Node.js.",
-    stack: ["Node.js", "JavaScript", "REST APIs"],
-    challenge: "Apply HTTP and backend fundamentals in a focused CRUD service.",
-    solution: "Built a small API with clear routes, validation, and predictable responses.",
-    outcome: "A compact demonstration of core backend development practices.",
-    highlights: ["CRUD API", "Request validation", "HTTP fundamentals"],
-    links: [{ label: "GitHub", href: "https://github.com/Qwwn/Bookshelf-API" }],
-  },
-  {
-    slug: "streamlit-data-visualization",
-    title: "Streamlit Data Visualization",
-    period: "2023",
-    category: "Academic",
-    featured: false,
-    eyebrow: "Python data application",
-    summary: "A Streamlit application for exploring and presenting data through an interactive web interface.",
-    role: "Worked on the Python application and its containerized deployment workflow.",
-    stack: ["Python", "Streamlit", "Docker", "Data Visualization"],
-    challenge: "Turn analysis results into an interface that others could run and explore.",
-    solution: "Built a Streamlit UI and documented both Docker and local execution paths.",
-    outcome: "A portable data visualization project with a reproducible runtime.",
-    highlights: ["Interactive visualization", "Dockerized runtime", "Python application"],
-    links: [
-      { label: "Visualization", href: "https://github.com/Qwwn/Tubes-Pemfug" },
-      { label: "Deployment", href: "https://github.com/Qwwn/py-web-srvc" },
-    ],
-  },
-  {
-    slug: "questionnaire-reporting",
-    title: "Questionnaire Reporting Automation",
-    period: "2024",
-    category: "Personal",
-    featured: false,
-    eyebrow: "Python document automation",
-    summary: "A Python utility that processes questionnaire CSV data and produces structured Word reports with tables and charts.",
-    role: "Designed the data-processing and document-generation workflow.",
-    stack: ["Python", "CSV Processing", "Document Automation", "Charts"],
-    challenge: "Convert repeated survey exports into consistent, presentation-ready reports.",
-    solution: "Automated grouping, tabulation, chart generation, and Word document output.",
-    outcome: "A repeatable reporting workflow that reduces manual formatting work.",
-    highlights: ["CSV processing", "Automated charts", "Word report generation"],
-    links: [{ label: "GitHub", href: "https://github.com/Qwwn/kuisoner" }],
   },
 ];
 
@@ -489,6 +449,12 @@ for (const project of projects) {
   for (const link of project.links) {
     if (new URL(link.href).protocol !== "https:") {
       throw new Error(`Project link for ${project.slug} must use HTTPS.`);
+    }
+  }
+
+  for (const workstream of project.workstreams ?? []) {
+    if (!workstream.title || !workstream.summary || workstream.responsibilities.length === 0) {
+      throw new Error(`Workstream for ${project.slug} is missing required content.`);
     }
   }
 }

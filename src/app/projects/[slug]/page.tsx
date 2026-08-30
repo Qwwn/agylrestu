@@ -74,6 +74,24 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </aside>
       ) : null}
 
+      {project.workstreams?.length ? (
+        <section className="case-workstreams" aria-labelledby="workstreams-heading">
+          <p className="eyebrow">Areas of contribution</p>
+          <h2 id="workstreams-heading">What I worked on across the ecosystem</h2>
+          <div className="workstream-grid">
+            {project.workstreams.map((workstream) => (
+              <article className="workstream-card" key={workstream.title}>
+                <h3>{workstream.title}</h3>
+                <p>{workstream.summary}</p>
+                <ul>
+                  {workstream.responsibilities.map((responsibility) => <li key={responsibility}>{responsibility}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <div className="case-body">
         <section>
           <p className="eyebrow">01 · Challenge</p>

@@ -131,27 +131,29 @@ await evaluate(`{
 }`);
 await new Promise((resolve) => setTimeout(resolve, 250));
 const archiveResult = await evaluate("document.querySelector('.result-count').textContent.trim()");
-assert(archiveResult === "Showing 8 of 14 projects", `Unexpected Archive result: ${archiveResult}`);
+assert(archiveResult === "Showing 5 of 9 projects", `Unexpected Archive result: ${archiveResult}`);
 
 await evaluate(`{
   [...document.querySelectorAll('.filter-button')].find((item) => item.textContent === 'All').click();
   const input = document.querySelector('.project-search input');
-  Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, 'Terraform');
+  Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, 'Fermata');
   input.dispatchEvent(new Event('input', { bubbles: true }));
   true;
 }`);
 await new Promise((resolve) => setTimeout(resolve, 350));
 const searchResult = await evaluate("document.querySelector('.result-count').textContent.trim()");
-assert(searchResult === "Showing 1 of 14 projects", `Unexpected search result: ${searchResult}`);
+assert(searchResult === "Showing 1 of 9 projects", `Unexpected search result: ${searchResult}`);
 
 await navigate("/projects/pdam-digital-service-ecosystem");
 const professionalSafety = await evaluate(`({
   hasNotice: Boolean(document.querySelector('.confidential-note')),
   repositoryLinks: [...document.querySelectorAll('.case-links a')].length,
+  workstreams: document.querySelectorAll('.workstream-card').length,
   text: document.body.innerText
 })`);
 assert(professionalSafety.hasNotice, "Professional confidentiality notice is missing.");
 assert(professionalSafety.repositoryLinks === 0, "Professional project exposes an external project link.");
+assert(professionalSafety.workstreams === 5, "Professional contribution workstreams are incomplete.");
 assert(!/password|secret|token|private key/i.test(professionalSafety.text), "Sensitive terminology appeared in the professional case study.");
 
 await navigate("/certifications");

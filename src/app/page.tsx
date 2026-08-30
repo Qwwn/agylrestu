@@ -13,10 +13,6 @@ export default function HomePage() {
     <>
       <section className="hero shell">
         <div className="hero-copy">
-          <p className="availability">
-            <span className="availability-dot" aria-hidden="true" />
-            <span>Open to junior software engineering opportunities</span>
-          </p>
           <p className="hero-kicker">Hello, I&apos;m {profile.name}.</p>
           <h1>I build useful software for the web and Android.</h1>
           <p className="hero-summary">{profile.summary}</p>
@@ -150,8 +146,8 @@ export default function HomePage() {
       <section className="contact-section shell" id="contact">
         <div>
           <p className="eyebrow">Let&apos;s connect</p>
-          <h2>Looking for a junior developer who is ready to learn and contribute?</h2>
-          <p>I&apos;m open to software engineering opportunities where I can grow with a strong team and help ship useful products.</p>
+          <h2>Interested in the work?</h2>
+          <p>For a project discussion or professional conversation, reach out through email or LinkedIn.</p>
         </div>
         <div className="contact-actions">
           <a className="button primary" href={`mailto:${profile.email}`}>Send an email</a>
