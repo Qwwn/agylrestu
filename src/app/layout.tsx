@@ -22,6 +22,16 @@ export const metadata: Metadata = {
   },
   description:
     "Software engineer portfolio featuring full-stack web, Android, cloud, and backend projects.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   alternates: { canonical: "/" },
   openGraph: {
     title: `${profile.name} — Software Engineer`,
